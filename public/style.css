@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+#main {
+    width: 90%;
+    max-width: 1200px;
+    height: 100%;
+}
+
+
+.content{
+    min-height: 800px !important;
+}
+
+/* .app {
+    height: 100%;
+    width: 80%;
+    margin: 100px auto;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+} */

@@ -1,0 +1,10 @@
+{{#if chk}}
+{{> import }}
+<a href="/category">Movie List</a> <br/>
+<a href="/category/curd">Modify favorite movies</a> 
+{{> side}}
+{{> content}}
+{{else}}
+<a href="/user/signin">Sign In</a>
+<a href="/user/signup">Sign Up</a>
+{{/if}}

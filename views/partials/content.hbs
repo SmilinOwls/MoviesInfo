@@ -1,0 +1,58 @@
+{{!-- <div class="card-body">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">TinyDes</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each products}}
+            <tr>
+                <th scope="row">{{ProID}}</th>
+                <td>{{ProName}}</td>
+                <td>{{TinyDes}}</td>
+                <td>{{Price}}</td>
+                <td>{{Quantity}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div> --}}
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-5">
+    {{#each ratingMovies}}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="{{MovImg}}" class="card-img-top" alt="{{MovId}}" style="width: 286px; height: 423px">
+            <div class="card-body">
+                <h5 class="card-title">{{MovTitle}} ({{MovYear}})</h5>
+                <p class="card-text">Rating: {{MovRating}}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a href="/movie/{{MovId}}" class="card-link">See more</a>
+                <a href="/favorite/add/{{MovId}}" class="card-link">Add to Favorite</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
