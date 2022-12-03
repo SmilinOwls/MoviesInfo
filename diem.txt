@@ -1,0 +1,15 @@
+✓ 1.5/1.5 điểm: xây dựng Postgres database bao gồm diagram và script.
+✓ 1/1 điểm: có chức năng import dữ liệu từ json (dữ liệu được cung cấp) khi
+chạy ứng dụng.
+✓ 1/1 điểm: hoàn thành đăng ký, đăng nhập, ghi nhớ đăng nhập cho phiên làm
+việc khác.
+✓ 1/1 điểm: xử lý lưu trữ password hợp lý
+✓ 0/1 điểm: thêm, xóa, sửa danh sách movie yêu thích.
+✓ 1/1 điểm: trang home với danh sách movie có rating cao nhất
+✓ 0/1 điểm: tìm kiếm movie, có phân trang (không bắt buộc AJAX).
+✓ 1/1 điểm: xem chi tiết movie với đủ thông tin.
+✓ 0/1.5 điểm: sử dụng AJAX phân trang các review của movie.
+✓ 1/1 điểm: xem chi tiết thông tin diễn viên có danh sách phim liên quan.
+✓ 0/1 điểm: tìm kiếm diễn viên hiển thị kết quả dạng bảng có phân trang.
+✓ 0.5/1 điểm: quản lý và xử lý hiển thị các lỗi cho người dùng.
+=> Tổng điểm đánh giá: 8đ
