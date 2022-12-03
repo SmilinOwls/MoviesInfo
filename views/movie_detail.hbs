@@ -1,0 +1,34 @@
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{movie.MovImg}}" class="img-fluid rounded-start" alt="{{movie.MovId}}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title" style="font-size:large;">{{movie.MovTitle}} - ({{movie.MovYear}})</h5>
+                <p class="card-text">Top Rank: <b>{{movie.MovTopRank}}</b></p>
+                <p class="card-text">Rating: <b>{{movie.MovRating}}</b> (<i>{{movie.MovRatingCount}}</i> total ratings)
+                </p>
+                <span class="card-text">
+                    <p>Genres: <i>{{movie.MovGenres.genres}}</i></p>
+                </span>
+                <div class="card-text" style="overflow: scroll; max-height: 360px; text-align: justify">
+                    {{movie.MovSynopses.synopses.text}}
+                </div>
+                <a class="btn btn-primary my-3" href="/" role="button">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+<h2>Casts</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+    {{#each movie.MovCasts.casts}}
+        {{> cast this}}
+    {{/each}}
+</div>
+<h2>Reviews</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+    {{#each movie.MovReviews.reviews}}
+        {{> review this}}
+    {{/each}}
+</div>

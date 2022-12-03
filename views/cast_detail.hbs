@@ -1,0 +1,39 @@
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{cast.CasImg}}" class="img-fluid rounded-start" alt="{{cast.CasId}}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title" style="font-size:larger;">{{cast.CasName}}</h3>
+                <p class="card-text">Real name: <b>{{cast.CasRealName}}</b></p>
+                <p class="card-text">Birth date: <b>{{cast.CasBirthDate}}</b></p>
+                <p class="card-text">Birth place: <b>{{cast.CasBirthPlace}}</b></p>
+                <p class="card-text">Gender: <b>{{cast.CasGender}}</b></p>
+                <p class="card-text">Height: <b>{{cast.CasHeightCentimeters}}</b></p>
+                <span class="card-text">
+                    <p>Nick names: <i>{{cast.CasNickNames.nicknames}}</i></p>
+                </span>
+                <a class="btn btn-primary my-3" href="/" role="button">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Movie Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each movie}}
+        <tr>
+            <th scope="row">{{MovId}}</th>
+            <td>{{MovTitle}}</td>
+            <td><a href="/movie/{{MovId}}">See more</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
