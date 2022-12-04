@@ -45,9 +45,7 @@ router.get('/',(req,res,next) => {
             if(page < pageTotal) {
                 navs.next = page + 1;
             }
-
-            console.log(data);
-    
+            
             res.render('home', { check: false, casts: data, chk: req.session.user, pages: pages, navs: navs, kind: 'cast', key: key, title: "Search Cast", type: "Search Cast Results" });
         }).catch(err => next(err));
     }

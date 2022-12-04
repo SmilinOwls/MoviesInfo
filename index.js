@@ -52,9 +52,7 @@ app.use('/cast', castR);
 app.use('/search', searchR);
 
 // Error middleware
-app.use((err, req, res, next) => {
-    res.status(400).send(err.message);
-});
+require('./controllers/errors.c')(app);
 
 http.createServer(app)
     .listen(port, () => { console.log(`Listening on port ${port}`) });
