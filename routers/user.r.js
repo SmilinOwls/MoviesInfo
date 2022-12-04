@@ -48,6 +48,7 @@ router.post('/signin', async (req, res, next) => {
         const pwSalt = pw + salt;
         const pwHashed = CryptoJs.SHA3(pwSalt, { outputLength: hashLength * 4 }).toString(CryptoJs.enc.Hex);
         if (pwDb == (pwHashed + salt)) {
+            uDb[0].pw = pw;
             if (req.body.Remember) res.cookie('user', uDb[0]);
             req.session.user = uDb[0];
             res.redirect('/');
