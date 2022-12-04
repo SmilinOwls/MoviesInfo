@@ -56,5 +56,37 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+    addF: async(user,movie) => {
+        try {
+            const rs = await movieM.addF(user,movie);
+            return rs; 
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    allF: async(id) => {
+        try {
+            const rs = await movieM.allF(id);
+            return rs; 
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    delF: async(user_id,movie_id) => {
+        try {
+            const rs = await movieM.delF(user_id,movie_id);
+            return rs; 
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    updateF: async(mov) => {
+        try {
+            const rs = await movieM.updateF(mov);
+            return rs; 
+        } catch (error) {
+            console.log(error);
+        }
+    },
 };

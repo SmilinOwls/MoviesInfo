@@ -9,7 +9,7 @@
 DROP TABLE IF EXISTS "FavoriteMovies";
 CREATE TABLE "FavoriteMovies" (
   "f_ID" int4 DEFAULT NULL,
-  "MovId" varchar(50) DEFAULT NULL
+  "MovId" varchar(50) NOT NULL
 )
 ;
 

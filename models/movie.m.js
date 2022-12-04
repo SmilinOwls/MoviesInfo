@@ -32,5 +32,21 @@ module.exports = {
     update: async(movie) => {
         const rs = await pdb.load('UPDATE "Movies" SET "MovTitle" = $1 WHERE "MovId" = $2 RETURNING *',[movie.title,movie.id]);
         return rs;
-    }
+    },
+    addF: async(user,movie) =>{
+        const rs = await pdb.load('INSERT INTO "FavoriteMovies" VAlUES($1,$2) ON CONFLICT("f_ID", "MovId") DO UPDATE SET "MovId" = excluded."MovId" RETURNING *',[user.f_ID,movie.MovId]);
+        return rs;
+    },
+    allF: async(id) => {
+        const rs = await pdb.load('SELECT * FROM "Movies" WHERE "MovId" IN (SELECT "MovId" FROM "FavoriteMovies" WHERE "f_ID" = $1)',[id]);
+        return rs;
+    }, 
+    delF:  async(user_id,movie_id) => {
+        const rs = await pdb.load('DELETE FROM "FavoriteMovies" WHERE "f_ID" = $1 AND "MovId" = $2 RETURNING *',[user_id,movie_id]);
+        return rs;
+    },
+    updateF: async(mov) =>{
+        const rs = await pdb.load('UPDATE "Movies" SET "MovTitle" = $1, "MovYear" = $2, "MovRating" = $3 WHERE "MovId" = $4 RETURNING *',[mov.MovTitle,parseInt(mov.MovYear),parseFloat(mov.MovRating),mov.MovId]);
+        return rs;
+    },
 };

@@ -1,4 +1,4 @@
-<div class="card-body">
+{{!-- <div class="card-body">
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -12,7 +12,8 @@
             {{#each categories}}
             {{#if isEdit}}
             <tr>
-                <th scope="row"><input type="text" name="catID" id="catID" value="{{CatID}}" disabled form="frmHidden"></td>
+                <th scope="row"><input type="text" name="catID" id="catID" value="{{CatID}}" disabled form="frmHidden">
+                    </td>
                 <td><input type="text" name="catName" id="catName" value="{{CatName}}" form="frmHidden"></td>
                 <td>
                     <button type="button" class="btn btn-primary" onclick="productByCatID({{CatID}})"><i
@@ -70,7 +71,7 @@
 
 <script type="application/javascript">
 
-    function trashClick(){
+    function trashClick() {
         $('#frmHidden').attr('action', '/category/curd');
         $('#frmHidden').submit();
     }
@@ -102,8 +103,76 @@
         $('#frmHidden').submit();
     }
 
-    function insertClick(){
-         $('#frmHidden').attr('action', '/category/insert');
+    function insertClick() {
+        $('#frmHidden').attr('action', '/category/insert');
+        $('#frmHidden').submit();
+    }
+
+</script>
+
+{{/section}} --}}
+<h3> Favorite Movies </h3>
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-5">
+    {{#each movie_list}}
+    
+
+    
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="{{MovImg}}" class="card-img-top" alt="{{MovId}}" style="width: 286px; height: 423px">
+            {{#if isEdit}}
+            <div class="card-body">
+                <h5 class="card-title"><input type="text" name="movTitle" id="movTitle" value="{{MovTitle}}" form="frmHidden"/></h5>
+                <p class="card-text"><input type="number" placeholder="YYYY"  min="1900" max="2023" name="movYear" id="movYear" value="{{MovYear}}" form="frmHidden"/></p>
+                <p class="card-text"><input type="number" step="0.1" name="movRating" id="movRating" value="{{MovRating}}" form="frmHidden"/></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between">
+                    <button type="button" style="width: 80px" class="btn btn-secondary" onclick="updateClick(`{{MovId}}`)">Update</button>
+                    <button type="button" style="width: 80px" class="btn btn-danger" onclick="delClick(`{{MovId}}`)">Delete</button>
+                </li>
+            </ul>
+            {{else}}
+            <div class="card-body">
+                <h5 class="card-title">{{MovTitle}}</h5>
+                <p class="card-text">Year: {{MovYear}}</p>
+                <p class="card-text">Rating: {{MovRating}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between">
+                    <button type="button" style="width: 80px" class="btn btn-success" onclick="editClick(`{{MovId}}`)">Edit</button>
+                    <button type="button" style="width: 80px" class="btn btn-danger" onclick="delClick(`{{MovId}}`)">Delete</button>
+                </li>
+            </ul>
+            {{/if}}
+            <div class="card-footer d-flex justify-content-between">
+                <a href="/movie/{{MovId}}" class="card-link">See more</a>
+                <a href="/" class="card-link">Add Another</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<form id="frmHidden" method="POST">
+</form>
+
+{{#section 'script'}}
+
+<script type="application/javascript">
+
+    function delClick(id) {
+        $('#frmHidden').attr('action', `/movie/favorite/delete/${id}`);
+        $('#frmHidden').submit();
+    }
+
+    function editClick(id) {
+        $('#frmHidden').attr('action', `/movie/favorite/edit/${id}`);
+        $('#frmHidden').submit();
+    }
+
+    function updateClick(id) {
+        $('#frmHidden').attr('action', `/movie/favorite/update/${id}`);
         $('#frmHidden').submit();
     }
 
