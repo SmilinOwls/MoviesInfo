@@ -14,7 +14,7 @@ module.exports = {
         return rs;
     },
     getByCasId: async(id) => {
-        const sql = `SELECT * FROM (SELECT "MovId","MovTitle",jsonb_array_elements_text("MovCasts"->'casts')::jsonb->>'id' AS "Info" FROM "Movies") as S
+        const sql = `SELECT * FROM (SELECT *,jsonb_array_elements_text("MovCasts"->'casts')::jsonb->>'id' AS "Info" FROM "Movies") as S
         WHERE "Info" = $1`
         const rs = await pdb.load(sql,[id]);
         return rs;

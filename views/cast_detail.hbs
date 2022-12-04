@@ -37,3 +37,21 @@
         {{/each}}
     </tbody>
 </table>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-5">
+    {{#each movie}}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="{{MovImg}}" class="card-img-top" alt="{{MovId}}" style="width: 286px; height: 423px">
+            <div class="card-body">
+                <h5 class="card-title">{{MovTitle}} ({{MovYear}})</h5>
+                <p class="card-text">Rating: {{MovRating}}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a href="/movie/{{MovId}}" class="card-link">See more</a>
+                <a href="/favorite/add/{{MovId}}" class="card-link">Add to Favorite</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
