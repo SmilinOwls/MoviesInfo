@@ -10,6 +10,7 @@ const dataR = require('./routers/data.r');
 const userR = require('./routers/user.r');
 const movieR = require('./routers/movie.r');
 const castR = require('./routers/cast.r');
+const searchR = require('./routers/search.r');
 const movieC = require('./controllers/movie.c');
 const port = 20234;
 
@@ -40,7 +41,7 @@ app.set('views', path.join(__dirname, './views'));
 
 app.get('/', (req, res, next) => {
     movieC.getByRating().then(data => {
-        res.render('home', { check: false, ratingMovies: data, chk: req.session.user, title: "Home" });
+        res.render('home', { check: false, movies: data, chk: req.session.user, title: "Home", type: "Top Ratings" });
     })
     .catch(error => next(error));
 });
@@ -52,6 +53,8 @@ app.use('/file',dataR);
 app.use('/movie',movieR);
 
 app.use('/cast',castR);
+
+app.use('/search',searchR);
 
 // Error middleware
 app.use((err, req, res, next) => {
