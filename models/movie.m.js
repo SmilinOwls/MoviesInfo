@@ -49,4 +49,9 @@ module.exports = {
         const rs = await pdb.load('UPDATE "Movies" SET "MovTitle" = $1, "MovYear" = $2, "MovRating" = $3 WHERE "MovId" = $4 RETURNING *',[mov.MovTitle,parseInt(mov.MovYear),parseFloat(mov.MovRating),mov.MovId]);
         return rs;
     },
+    search: async(key) => {
+        const sql = `SELECT * FROM "Movies" AS M1 WHERE "MovTitle" LIKE '%${key}%' OR $1 IN (SELECT jsonb_array_elements_text("MovGenres"->'genres') FROM "Movies" AS M2 WHERE M1."MovId" = M2."MovId")`
+        const rs = await pdb.load(sql,[key]);
+        return rs;
+    }
 };

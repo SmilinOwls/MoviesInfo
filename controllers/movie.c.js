@@ -89,4 +89,12 @@ module.exports = {
             console.log(error);
         }
     },
+    search: async(key) => {
+        try {
+            const rs = await movieM.search(key);
+            return rs; 
+        } catch (error) {
+            console.log(error);
+        }
+    },
 };
