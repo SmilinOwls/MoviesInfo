@@ -9,10 +9,12 @@ function isAuthorized(req, res, next) {
     else next();
 };
 
-router.get('/:MovId', async (req, res, next) => {
+
+router.get('/:MovId/', async (req, res, next) => {
     const MovId = req.params.MovId;
     const movie = await movieC.getById(MovId);
-    res.render('movie_detail', { check: false, chk: req.session.user, movie: movie[0], title: "Movie Detail" });
+
+    res.render('movie_detail', {check: false, chk: req.session.user, movie: movie[0], title: "Movie Detail" });
 });
 
 router.get('/favorite/add/:MovId', isAuthorized, async (req, res, next) => {
@@ -44,9 +46,9 @@ router.post('/favorite/edit/:MovId', async (req, res, next) => {
     const user = req.session.user;
     const MovId = req.params.MovId;
     const movie_list = await movieC.allF(user.f_ID);
-    for(const movie of movie_list){
+    for (const movie of movie_list) {
         movie.isEdit = false;
-        if(movie.MovId == MovId) movie.isEdit = true;
+        if (movie.MovId == MovId) movie.isEdit = true;
     }
     res.render('curd', { check: false, chk: req.session.user, movie_list: movie_list, title: "Favorite Movie" });
 });
@@ -54,15 +56,15 @@ router.post('/favorite/edit/:MovId', async (req, res, next) => {
 router.post('/favorite/update/:MovId', async (req, res, next) => {
     const user = req.session.user;
     const mov = {
-        MovId: req.params.MovId, 
-        MovTitle: req.body.movTitle, 
-        MovYear: req.body.movYear, 
+        MovId: req.params.MovId,
+        MovTitle: req.body.movTitle,
+        MovYear: req.body.movYear,
         MovRating: req.body.movRating
     }
     console.log(mov);
-    movieC.updateF(mov).then(async() => {
+    movieC.updateF(mov).then(async () => {
         const movie_list = await movieC.allF(user.f_ID);
-        for(const movie of movie_list){
+        for (const movie of movie_list) {
             movie.isEdit = false;
         }
         res.render('curd', { check: false, chk: req.session.user, movie_list: movie_list, title: "Favorite Movie" });
