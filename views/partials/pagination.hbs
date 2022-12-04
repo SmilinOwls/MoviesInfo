@@ -2,7 +2,7 @@
     <ul class="pagination d-flex justify-content-center">
         {{#if navs.prev}}
         <li class="page-item">
-            <a class="page-link" href="?key='S'&page={{navs.pre}}" aria-label="Previous">
+            <a class="page-link" href="?key={{key}}&{{kind}}=true&page={{navs.prev}}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
@@ -24,7 +24,7 @@
         </li>
         {{else}}
         <li class="page-item">
-            <a class="page-link" href="?key={{key}}&page={{ value }}">
+            <a class="page-link" href="?key={{key}}&{{kind}}=true&page={{ value }}">
                 {{ value }}
             </a>
         </li>
@@ -32,7 +32,7 @@
         {{/each}}
         {{#if navs.next}}
         <li class="page-item">
-            <a class="page-link" href="?key={{key}}&page={{navs.next}}" aria-label="Next">
+            <a class="page-link" href="?key={{key}}&{{kind}}=true&page={{navs.next}}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>

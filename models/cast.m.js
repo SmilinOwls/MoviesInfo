@@ -14,5 +14,13 @@ module.exports = {
     allByCastId: async (id) =>{
         const rs = await pdb.load('SELECT * FROM "Casts" WHERE "CasId" = $1',[id]);
         return rs;
+    },
+    search: async(key) => {
+        const sql = `SELECT * FROM "Casts" AS C1 WHERE "CasName" LIKE '%Ang%' 
+        OR "CasBirthPlace" LIKE '%${key}%' 
+        OR "CasRealName" LIKE '%${key}%' 
+        OR $1 IN (SELECT jsonb_array_elements_text("CasNickNames"->'nicknames') FROM "Casts" AS C2 WHERE C1."CasId" = C2."CasId")`
+        const rs = await pdb.load(sql,[key]);
+        return rs;
     }
 };

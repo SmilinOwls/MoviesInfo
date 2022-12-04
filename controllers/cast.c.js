@@ -25,4 +25,12 @@ module.exports = {
             console.log(error);
         }
     },
+    search: async(key) => {
+        try {
+            const rs = await castM.search(key);
+            return rs; 
+        } catch (error) {
+            console.log(error);
+        }
+    },
 };

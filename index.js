@@ -27,13 +27,7 @@ app.use(cookieSession({ secret: 'secret', cookie: { maxAge: 60 * 60 * 1000 } }))
 
 // Template engine config
 app.engine('hbs', handlebars.engine({
-    extname: '.hbs', defaultLayout: 'main', helpers: {
-        section: function (name, options) {
-            if (!this._sections) this._sections = {};
-            this._sections[name] = options.fn(this);
-            return null;
-        }
-    }
+    extname: '.hbs', defaultLayout: 'main', helpers: require('./helpers/hbs-helpers')
 }));
 
 app.set('view engine', 'hbs');
@@ -41,20 +35,21 @@ app.set('views', path.join(__dirname, './views'));
 
 app.get('/', (req, res, next) => {
     movieC.getByRating().then(data => {
-        res.render('home', { check: false, movies: data, chk: req.session.user, title: "Home", type: "Top Ratings" });
+        res.render('home', { check: false, movies: data, chk: req.session.user, kind: 'movie', title: "Home", type: "Top Ratings" });
     })
-    .catch(error => next(error));
+        .catch(error => next(error));
 });
+
 
 app.use('/user', userR);
 
-app.use('/file',dataR);
+app.use('/file', dataR);
 
-app.use('/movie',movieR);
+app.use('/movie', movieR);
 
-app.use('/cast',castR);
+app.use('/cast', castR);
 
-app.use('/search',searchR);
+app.use('/search', searchR);
 
 // Error middleware
 app.use((err, req, res, next) => {
